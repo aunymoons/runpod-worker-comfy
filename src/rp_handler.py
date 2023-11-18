@@ -175,6 +175,7 @@ def handler(job):
     # The image is in the output folder
     if os.path.exists(local_image_path):
         print("runpod-worker-comfy - the image exists in the output folder")
+        print("Auny's version")
         image_url = rp_upload.upload_image(job["id"], local_image_path)
         return_base64 = "simulated_uploaded/" in image_url
         return_output = f"{image_url}" if not return_base64 else base64_encode(local_image_path)

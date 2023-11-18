@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Clone ComfyUI repository
-RUN git clone https://github.com/comfyanonymous/ComfyUI.git /comfyui
+RUN git clone https://github.com/aunymoons/ComfyUI.git /comfyui
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
@@ -35,6 +35,22 @@ RUN pip3 install runpod requests
 # Download models to include in image. (not required if including other models below)
 RUN wget -O models/checkpoints/sd_xl_base_1.0.safetensors https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
 RUN wget -O models/checkpoints/sdxl_vae.safetensors https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
+
+# Download Loras to include in image.
+RUN wget -O models/loras/extreme-low-angle-perspective.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/extreme-low-angle-perspective.safetensors
+RUN wget -O models/loras/tinyman.safetensors https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
+
+# go to custom nodes to begin installing them
+WORKDIR /comfyui/custom_nodes
+
+# INSTALLING IMPACT PACK
+RUN git clone https://github.com/aunymoons/ComfyUI-Impact-Pack.git /comfyui/custom_nodes 
+WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack
+RUN git submodule update --init --recursive
+RUN python3 install.py
+
+WORKDIR /comfyui/custom_nodes
+
 
 # # Example for adding specific models into image
 # ADD models/checkpoints/sd_xl_base_1.0.safetensors models/checkpoints/
