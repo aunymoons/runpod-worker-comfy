@@ -62,18 +62,25 @@ RUN wget -O models/checkpoints/sdxl_vae.safetensors https://huggingface.co/stabi
 RUN wget -O models/loras/extreme-low-angle-perspective.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/extreme-low-angle-perspective.safetensors
 RUN wget -O models/loras/tinyman.safetensors https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
 
+# Create necessary directories
+RUN mkdir -p /models/ultralytics
+RUN mkdir -p /models/ultralytics/bbox
+RUN mkdir -p /models/ultralytics/segm
+RUN mkdir -p /models/sams
+
 # Get SAM models
-RUN wget -O models/sams/sam_vit_b_01ec64.pth https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
+RUN wget -O /models/sams/sam_vit_b_01ec64.pth https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
 
 # Get Ultralytics models
-RUN wget -O models/ultralytics/bbox/face_yolov8m.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/face_yolov8m.pt
-RUN wget -O models/ultralytics/bbox/hand_yolov8s.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/hand_yolov8s.pt
+RUN wget -O /models/ultralytics/bbox/face_yolov8m.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/face_yolov8m.pt
+RUN wget -O /models/ultralytics/bbox/hand_yolov8s.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/hand_yolov8s.pt
 
-RUN wget -O models/ultralytics/segm/foot-yolov8l.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/foot-yolov8l.pt
-RUN wget -O models/ultralytics/segm/genitalia.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/genitalia.pt
-RUN wget -O models/ultralytics/segm/penisV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/penisV2.pt
-RUN wget -O models/ultralytics/segm/person_yolo8m.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/person_yolo8m.pt
-RUN wget -O models/ultralytics/segm/pussyV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/pussyV2.pt
+RUN wget -O /models/ultralytics/segm/foot-yolov8l.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/foot-yolov8l.pt
+RUN wget -O /models/ultralytics/segm/genitalia.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/genitalia.pt
+RUN wget -O /models/ultralytics/segm/penisV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/penisV2.pt
+RUN wget -O /models/ultralytics/segm/person_yolo8m.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/person_yolo8m.pt
+RUN wget -O /models/ultralytics/segm/pussyV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/pussyV2.pt
+
 
 # # Example for adding specific models into image
 # ADD models/checkpoints/sd_xl_base_1.0.safetensors models/checkpoints/
