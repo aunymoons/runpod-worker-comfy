@@ -21,6 +21,14 @@ RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 # Clone ComfyUI repository
 RUN git clone https://github.com/aunymoons/ComfyUI.git /comfyui
 
+# go to custom nodes to begin installing them
+WORKDIR /comfyui/custom_nodes
+
+# INSTALLING IMPACT PACK
+RUN git clone https://github.com/aunymoons/ComfyUI-Impact-Pack.git /comfyui/custom_nodes 
+WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack
+RUN git submodule update --init --recursive && python3 install.py
+
 # Change working directory to ComfyUI
 WORKDIR /comfyui
 
@@ -40,13 +48,7 @@ RUN wget -O models/checkpoints/sdxl_vae.safetensors https://huggingface.co/stabi
 RUN wget -O models/loras/extreme-low-angle-perspective.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/extreme-low-angle-perspective.safetensors
 RUN wget -O models/loras/tinyman.safetensors https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
 
-# go to custom nodes to begin installing them
-WORKDIR /comfyui/custom_nodes
 
-# INSTALLING IMPACT PACK
-RUN git clone https://github.com/aunymoons/ComfyUI-Impact-Pack.git /comfyui/custom_nodes 
-WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack
-RUN git submodule update --init --recursive && python3 install.py
 
 WORKDIR /comfyui/custom_nodes
 
