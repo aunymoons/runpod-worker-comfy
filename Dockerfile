@@ -21,6 +21,17 @@ RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 # Clone ComfyUI repository
 RUN git clone https://github.com/aunymoons/ComfyUI.git /comfyui
 
+
+
+# Change working directory to ComfyUI
+WORKDIR /comfyui
+
+# Install ComfyUI dependencies
+RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 \
+    && pip3 install --no-cache-dir xformers==0.0.21 \
+    && pip3 install -r requirements.txt
+
+
 # go to custom nodes to begin installing them
 WORKDIR /comfyui/custom_nodes
 
@@ -33,18 +44,15 @@ WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack
 
 RUN ls -la
 
-RUN git submodule update --init --recursive && python3 install.py
+RUN git submodule update --init --recursive
 
-# Change working directory to ComfyUI
-WORKDIR /comfyui
-
-# Install ComfyUI dependencies
-RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 \
-    && pip3 install --no-cache-dir xformers==0.0.21 \
-    && pip3 install -r requirements.txt
+RUN python3 install.py
 
 # Install runpod
 RUN pip3 install runpod requests
+
+# Change working directory to ComfyUI
+WORKDIR /comfyui
 
 # Download models to include in image. (not required if including other models below)
 RUN wget -O models/checkpoints/sd_xl_base_1.0.safetensors https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
