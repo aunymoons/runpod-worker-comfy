@@ -78,7 +78,7 @@ RUN wget -O /models/ultralytics/bbox/hand_yolov8s.pt https://huggingface.co/Auny
 RUN wget -O /models/ultralytics/segm/foot-yolov8l.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/foot-yolov8l.pt
 RUN wget -O /models/ultralytics/segm/genitalia.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/genitalia.pt
 RUN wget -O /models/ultralytics/segm/penisV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/penisV2.pt
-RUN wget -O /models/ultralytics/segm/person_yolo8m.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/person_yolo8m.pt
+RUN wget -O /models/ultralytics/segm/person_yolo8m-seg.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/person_yolo8m-seg.pt
 RUN wget -O /models/ultralytics/segm/pussyV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/pussyV2.pt
 
 
