@@ -26,7 +26,13 @@ WORKDIR /comfyui/custom_nodes
 
 # INSTALLING IMPACT PACK
 RUN git clone https://github.com/aunymoons/ComfyUI-Impact-Pack.git /comfyui/custom_nodes 
+
+RUN ls -la
+
 WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack
+
+RUN ls -la
+
 RUN git submodule update --init --recursive && python3 install.py
 
 # Change working directory to ComfyUI
