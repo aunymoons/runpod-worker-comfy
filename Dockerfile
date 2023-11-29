@@ -31,11 +31,9 @@ RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https:/
     && pip3 install --no-cache-dir xformers==0.0.21 \
     && pip3 install -r requirements.txt
 
-
-# go to custom nodes to begin installing them
+# INSTALLING IMPACT PACK
 WORKDIR /comfyui/custom_nodes
 
-# INSTALLING IMPACT PACK
 RUN git clone https://github.com/aunymoons/ComfyUI-Impact-Pack.git /comfyui/custom_nodes/ComfyUI-Impact-Pack
 
 RUN ls -la
@@ -48,6 +46,41 @@ RUN git submodule update --init --recursive
 
 RUN python3 install.py
 
+WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack/impact_subpack
+
+RUN python3 install.py
+
+# INSTALLING MASQUERADE
+WORKDIR /comfyui/custom_nodes
+
+RUN git clone https://github.com/aunymoons/masquerade-nodes-comfyui.git /comfyui/custom_nodes/masquerade-nodes-comfyui 
+
+# INSTALLING WAS NODE SUITE
+WORKDIR /comfyui/custom_nodes
+
+RUN git clone https://github.com/aunymoons/was-node-suite-comfyui.git /comfyui/custom_nodes/was-node-suite-comfyui
+
+RUN ls -la
+
+WORKDIR /comfyui/custom_nodes/was-node-suite-comfyui
+
+RUN ls -la
+
+RUN pip install -r requirements.txt
+
+# INSTALLING CONTROLNET AUXILIARY NODES
+WORKDIR /comfyui/custom_nodes
+
+RUN git clone https://github.com/aunymoons/comfyui_controlnet_aux.git /comfyui/custom_nodes/comfyui_controlnet_aux
+
+RUN ls -la
+
+WORKDIR /comfyui/custom_nodes/comfyui_controlnet_aux
+
+RUN ls -la
+
+RUN pip install -r requirements.txt
+
 # Install runpod
 RUN pip3 install runpod requests
 
@@ -58,15 +91,29 @@ WORKDIR /comfyui
 RUN wget -O models/checkpoints/sd_xl_base_1.0.safetensors https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
 RUN wget -O models/checkpoints/sdxl_vae.safetensors https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
 
+RUN wget -O models/checkpoints/sd_xl_turbo_1.0_fp16.safetensors 
+RUN wget -O models/checkpoints/airfucksBruteMix_v10.safetensors
+RUN wget -O models/checkpoints/bb95FurryMix_v60.safetensors
+RUN wget -O models/checkpoints/homofidelis_v20BETA.safetensors
+RUN wget -O models/checkpoints/crystalClearXL_ccxl.safetensors
+
 # Download Loras to include in image.
 RUN wget -O models/loras/extreme-low-angle-perspective.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/extreme-low-angle-perspective.safetensors
 RUN wget -O models/loras/tinyman.safetensors https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
+
+RUN wget -O models/loras/tinyman512.safetensors 
+RUN wget -O models/loras/lcm_lora_sdxl.safetensors
+RUN wget -O models/loras/BetterCocks2.safetensors 
+
+# Download VAEs
+RUN wget -O models/vae/vae-ft-mse-840000-ema-pruned.safetensors
 
 # Create necessary directories
 RUN mkdir -p /models/ultralytics
 RUN mkdir -p /models/ultralytics/bbox
 RUN mkdir -p /models/ultralytics/segm
 RUN mkdir -p /models/sams
+RUN mkdir -p /models/midas/checkpoints
 
 # Get SAM models
 RUN wget -O /models/sams/sam_vit_b_01ec64.pth https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
@@ -80,6 +127,7 @@ RUN wget -O /models/ultralytics/segm/genitalia.pt https://huggingface.co/AunyMoo
 RUN wget -O /models/ultralytics/segm/penisV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/penisV2.pt
 RUN wget -O /models/ultralytics/segm/person_yolov8m-seg.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/person_yolov8m-seg.pt
 RUN wget -O /models/ultralytics/segm/pussyV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/pussyV2.pt
+RUN wget -O /models/midas/checkpoints/dpt_large_384.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/pussyV2.pt
 
 
 # # Example for adding specific models into image
