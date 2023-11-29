@@ -91,22 +91,22 @@ WORKDIR /comfyui
 RUN wget -O models/checkpoints/sd_xl_base_1.0.safetensors https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
 RUN wget -O models/checkpoints/sdxl_vae.safetensors https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
 
-RUN wget -O models/checkpoints/sd_xl_turbo_1.0_fp16.safetensors 
-RUN wget -O models/checkpoints/airfucksBruteMix_v10.safetensors
-RUN wget -O models/checkpoints/bb95FurryMix_v60.safetensors
-RUN wget -O models/checkpoints/homofidelis_v20BETA.safetensors
-RUN wget -O models/checkpoints/crystalClearXL_ccxl.safetensors
+RUN wget -O models/checkpoints/sd_xl_turbo_1.0_fp16.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/sd_xl_turbo_1.0_fp16.safetensors
+RUN wget -O models/checkpoints/airfucksBruteMix_v10.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/airfucksBruteMix_v10.safetensors
+RUN wget -O models/checkpoints/bb95FurryMix_v60.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/bb95FurryMix_v60.safetensors
+RUN wget -O models/checkpoints/homofidelis_v20BETA.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/homofidelis_v20BETA.safetensors
+RUN wget -O models/checkpoints/crystalClearXL_ccxl.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/crystalClearXL_ccxl.safetensors
 
 # Download Loras to include in image.
 RUN wget -O models/loras/extreme-low-angle-perspective.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/extreme-low-angle-perspective.safetensors
 RUN wget -O models/loras/tinyman.safetensors https://huggingface.co/AunyMoons/loras-pack/blob/main/tinyman.safetensors
 
-RUN wget -O models/loras/tinyman512.safetensors 
-RUN wget -O models/loras/lcm_lora_sdxl.safetensors
-RUN wget -O models/loras/BetterCocks2.safetensors 
+RUN wget -O models/loras/tinyman512.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/tinyman512.safetensors
+RUN wget -O models/loras/lcm_lora_sdxl.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/lcm_lora_sdxl.safetensors
+RUN wget -O models/loras/BetterCocks2.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/BetterCocks2.safetensors
 
 # Download VAEs
-RUN wget -O models/vae/vae-ft-mse-840000-ema-pruned.safetensors
+RUN wget -O models/vae/vae-ft-mse-840000-ema-pruned.safetensors https://huggingface.co/AunyMoons/loras-pack/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors
 
 # Create necessary directories
 RUN mkdir -p /models/ultralytics
