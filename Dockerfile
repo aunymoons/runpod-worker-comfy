@@ -127,7 +127,7 @@ RUN wget -O /models/ultralytics/segm/genitalia.pt https://huggingface.co/AunyMoo
 RUN wget -O /models/ultralytics/segm/penisV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/penisV2.pt
 RUN wget -O /models/ultralytics/segm/person_yolov8m-seg.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/person_yolov8m-seg.pt
 RUN wget -O /models/ultralytics/segm/pussyV2.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/pussyV2.pt
-RUN wget -O /models/midas/checkpoints/dpt_large_384.pt https://huggingface.co/AunyMoons/loras-pack/blob/main/pussyV2.pt
+RUN wget -O /models/midas/checkpoints/dpt_large_384.pt https://huggingface.co/AunyMoons/loras-pack/resolve/main/dpt_large_384.pt
 
 
 # # Example for adding specific models into image
