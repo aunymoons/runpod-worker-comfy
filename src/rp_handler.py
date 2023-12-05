@@ -9,13 +9,13 @@ import requests
 import base64
 
 # Time to wait between API check attempts in milliseconds
-COMFY_API_AVAILABLE_INTERVAL_MS = 50
+COMFY_API_AVAILABLE_INTERVAL_MS = 1000
 # Maximum number of API check attempts
-COMFY_API_AVAILABLE_MAX_RETRIES = 500
+COMFY_API_AVAILABLE_MAX_RETRIES = 60
 # Time to wait between poll attempts in milliseconds
-COMFY_POLLING_INTERVAL_MS = 250
+COMFY_POLLING_INTERVAL_MS = 1000
 # Maximum number of poll attempts
-COMFY_POLLING_MAX_RETRIES = 100
+COMFY_POLLING_MAX_RETRIES = 90
 # Host where ComfyUI is running
 COMFY_HOST = "127.0.0.1:8188"
 # The path where ComfyUI stores the generated images
@@ -172,6 +172,7 @@ def handler(job):
 
     # expected image output folder
     local_image_path = f"{COMFY_OUTPUT_PATH}/{output_images}"
+    print(f"Local image path is: {local_image_path}")
     # The image is in the output folder
     if os.path.exists(local_image_path):
         print("runpod-worker-comfy - the image exists in the output folder")

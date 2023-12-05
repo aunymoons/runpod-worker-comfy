@@ -3,3 +3,5 @@ venv
 .env
 data
 models
+ComfyUI_windows_portable
+stable-diffusion-webui
