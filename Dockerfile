@@ -38,64 +38,64 @@ WORKDIR /comfyui
 
 RUN pip3 install -r requirements.txt
 
-# INSTALLING IMPACT PACK
-WORKDIR /comfyui/custom_nodes
+# # INSTALLING IMPACT PACK
+# WORKDIR /comfyui/custom_nodes
 
-RUN git clone https://github.com/aunymoons/ComfyUI-Impact-Pack.git /comfyui/custom_nodes/ComfyUI-Impact-Pack
+# RUN git clone https://github.com/aunymoons/ComfyUI-Impact-Pack.git /comfyui/custom_nodes/ComfyUI-Impact-Pack
 
-RUN ls -la
+# RUN ls -la
 
-WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack
+# WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack
 
-RUN ls -la
+# RUN ls -la
 
-RUN git submodule update --init --recursive
+# RUN git submodule update --init --recursive
 
-RUN python3 install.py
+# RUN python3 install.py
 
-WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack/impact_subpack
+# WORKDIR /comfyui/custom_nodes/ComfyUI-Impact-Pack/impact_subpack
 
-RUN python3 install.py
+# RUN python3 install.py
 
-# INSTALLING MASQUERADE
-WORKDIR /comfyui/custom_nodes
+# # INSTALLING MASQUERADE
+# WORKDIR /comfyui/custom_nodes
 
-RUN git clone https://github.com/aunymoons/masquerade-nodes-comfyui.git /comfyui/custom_nodes/masquerade-nodes-comfyui 
+# RUN git clone https://github.com/aunymoons/masquerade-nodes-comfyui.git /comfyui/custom_nodes/masquerade-nodes-comfyui 
 
-# INSTALLING WAS NODE SUITE
-WORKDIR /comfyui/custom_nodes
+# # INSTALLING WAS NODE SUITE
+# WORKDIR /comfyui/custom_nodes
 
-RUN git clone https://github.com/aunymoons/was-node-suite-comfyui.git /comfyui/custom_nodes/was-node-suite-comfyui
+# RUN git clone https://github.com/aunymoons/was-node-suite-comfyui.git /comfyui/custom_nodes/was-node-suite-comfyui
 
-RUN ls -la
+# RUN ls -la
 
-WORKDIR /comfyui/custom_nodes/was-node-suite-comfyui
+# WORKDIR /comfyui/custom_nodes/was-node-suite-comfyui
 
-RUN ls -la
+# RUN ls -la
 
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
 
-# INSTALLING CONTROLNET AUXILIARY NODES
-WORKDIR /comfyui/custom_nodes
+# # INSTALLING CONTROLNET AUXILIARY NODES
+# WORKDIR /comfyui/custom_nodes
 
-RUN git clone https://github.com/aunymoons/comfyui_controlnet_aux.git /comfyui/custom_nodes/comfyui_controlnet_aux
+# RUN git clone https://github.com/aunymoons/comfyui_controlnet_aux.git /comfyui/custom_nodes/comfyui_controlnet_aux
 
-RUN ls -la
+# RUN ls -la
 
-WORKDIR /comfyui/custom_nodes/comfyui_controlnet_aux
+# WORKDIR /comfyui/custom_nodes/comfyui_controlnet_aux
 
-RUN ls -la
+# RUN ls -la
 
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
 
-# INSTALLING ALLOR
-WORKDIR /comfyui/custom_nodes
+# # INSTALLING ALLOR
+# WORKDIR /comfyui/custom_nodes
 
-RUN git clone https://github.com/aunymoons/ComfyUI-Allor.git /comfyui/custom_nodes/comfyui-allor
+# RUN git clone https://github.com/aunymoons/ComfyUI-Allor.git /comfyui/custom_nodes/comfyui-allor
 
-WORKDIR /comfyui/custom_nodes/comfyui-allor
+# WORKDIR /comfyui/custom_nodes/comfyui-allor
 
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
 
 # Install runpod
 RUN pip3 install runpod requests
@@ -114,9 +114,9 @@ RUN mkdir -p /comfyui/models/loras
 RUN mkdir -p /comfyui/models/controlnet
 RUN mkdir -p /comfyui/models/hypernetworks
 
-# COPY C:/Users/Aunym/Documents/Repositories/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors /comfyui/models/checkpoints/
+COPY C:/Users/Aunym/Documents/Repositories/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_turbo_1.0_fp16.safetensors /comfyui/models/checkpoints/
-# COPY C:/Users/Aunym/Documents/Repositories/stable-diffusion-webui/models/Stable-diffusion/airfucksBruteMix_v10.safetensors /comfyui/models/checkpoints/
+COPY C:/Users/Aunym/Documents/Repositories/stable-diffusion-webui/models/Stable-diffusion/airfucksBruteMix_v10.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/bb95FurryMix_v60.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/homofidelis_v20BETA.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/crystalClearXL_ccxl.safetensors /comfyui/models/checkpoints/
@@ -131,7 +131,7 @@ COPY stable-diffusion-webui/extensions/sd-webui-controlnet/models/control_v11p_s
 COPY stable-diffusion-webui/models/Lora/extreme-low-angle-perspective.safetensors /comfyui/models/loras/
 COPY stable-diffusion-webui/models/Lora/tinyman.safetensors /comfyui/models/loras/
 COPY stable-diffusion-webui/models/Lora/tinyman512.safetensors /comfyui/models/loras/
-COPY stable-diffusion-webui/models/Lora/lcm_lora_sdxl.safetensors /comfyui/models/loras/
+# COPY stable-diffusion-webui/models/Lora/lcm_lora_sdxl.safetensors /comfyui/models/loras/
 COPY stable-diffusion-webui/models/Lora/BetterCocks2.safetensors /comfyui/models/loras/
 COPY stable-diffusion-webui/models/Lora/xpenisv9-000040.safetensors /comfyui/models/loras/
 
@@ -158,18 +158,6 @@ COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/foot-yolov8l.pt /c
 COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/genitalia.pt /comfyui/models/ultralytics/segm/
 COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/penisV2.pt /comfyui/models/ultralytics/segm/
 COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/person_yolov8m-seg.pt /comfyui/models/ultralytics/segm/
-# COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/pussyV2.pt /comfyui/models/ultralytics/segm/
-
-# COPY C:/Users/Aunym/Documents/Repositories/ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/dpt_large_384.pt /comfyui/models/models/midas/checkpoints/
-
-# COPY C:/Users/Aunym/Documents/Repositories/ComfyUI_windows_portable/ComfyUI/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/dpt_hybrid-midas-501f0c75.pt /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/
-
-# RUN wget -O /models/midas/checkpoints/dpt_large_384.pt https://huggingface.co/AunyMoons/loras-pack/resolve/main/dpt_large_384.pt
-
-
-# # Example for adding specific models into image
-# ADD models/checkpoints/sd_xl_base_1.0.safetensors models/checkpoints/
-# ADD models/checkpoints/sdxl_vae.safetensors models/checkpoints/
 
 # Go back to the root
 WORKDIR /
