@@ -30,8 +30,8 @@ RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 ARG CACHEBUST=1
 
-# Clone ComfyUI repository
-RUN git clone https://github.com/aunymoons/ComfyUI.git /comfyui
+# Clone ComfyUI repository from branch develop 
+RUN git clone --branch latest https://github.com/aunymoons/ComfyUI.git /comfyui
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
