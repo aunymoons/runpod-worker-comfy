@@ -114,9 +114,9 @@ RUN mkdir -p /comfyui/models/loras
 RUN mkdir -p /comfyui/models/controlnet
 RUN mkdir -p /comfyui/models/hypernetworks
 
-COPY C:/Users/Aunym/Documents/Repositories/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors /comfyui/models/checkpoints/
+COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_turbo_1.0_fp16.safetensors /comfyui/models/checkpoints/
-COPY C:/Users/Aunym/Documents/Repositories/stable-diffusion-webui/models/Stable-diffusion/airfucksBruteMix_v10.safetensors /comfyui/models/checkpoints/
+COPY stable-diffusion-webui/models/Stable-diffusion/airfucksBruteMix_v10.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/bb95FurryMix_v60.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/homofidelis_v20BETA.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/crystalClearXL_ccxl.safetensors /comfyui/models/checkpoints/
