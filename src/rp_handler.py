@@ -9,11 +9,11 @@ import requests
 import base64
 
 # Time to wait between API check attempts in milliseconds
-COMFY_API_AVAILABLE_INTERVAL_MS = 1000
+COMFY_API_AVAILABLE_INTERVAL_MS = 2000
 # Maximum number of API check attempts
 COMFY_API_AVAILABLE_MAX_RETRIES = 60
 # Time to wait between poll attempts in milliseconds
-COMFY_POLLING_INTERVAL_MS = 1000
+COMFY_POLLING_INTERVAL_MS = 2000
 # Maximum number of poll attempts
 COMFY_POLLING_MAX_RETRIES = 90
 # Host where ComfyUI is running

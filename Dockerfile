@@ -38,6 +38,15 @@ WORKDIR /comfyui
 
 RUN pip3 install -r requirements.txt
 
+# INSTALLING SAM
+WORKDIR /comfyui/custom_nodes
+
+RUN git clone https://github.com/aunymoons/comfyui_segment_anything.git /comfyui/custom_nodes/comfyui_segment_anything 
+
+WORKDIR /comfyui/custom_nodes/comfyui_segment_anything
+
+RUN pip3 install -r requirements.txt
+
 # # INSTALLING IMPACT PACK
 # WORKDIR /comfyui/custom_nodes
 
@@ -75,18 +84,18 @@ RUN pip3 install -r requirements.txt
 
 # RUN pip install -r requirements.txt
 
-# # INSTALLING CONTROLNET AUXILIARY NODES
-# WORKDIR /comfyui/custom_nodes
+# INSTALLING CONTROLNET AUXILIARY NODES
+WORKDIR /comfyui/custom_nodes
 
-# RUN git clone https://github.com/aunymoons/comfyui_controlnet_aux.git /comfyui/custom_nodes/comfyui_controlnet_aux
+RUN git clone https://github.com/aunymoons/comfyui_controlnet_aux.git /comfyui/custom_nodes/comfyui_controlnet_aux
 
-# RUN ls -la
+RUN ls -la
 
-# WORKDIR /comfyui/custom_nodes/comfyui_controlnet_aux
+WORKDIR /comfyui/custom_nodes/comfyui_controlnet_aux
 
-# RUN ls -la
+RUN ls -la
 
-# RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # # INSTALLING ALLOR
 # WORKDIR /comfyui/custom_nodes
@@ -113,51 +122,62 @@ RUN mkdir -p /comfyui/models/upscale_models
 RUN mkdir -p /comfyui/models/loras
 RUN mkdir -p /comfyui/models/controlnet
 RUN mkdir -p /comfyui/models/hypernetworks
+RUN mkdir -p /comfyui/models/bert-base-uncased
+RUN mkdir -p /comfyui/models/sams
+RUN mkdir -p /comfyui/models/grounding-dino
 
-COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors /comfyui/models/checkpoints/
-COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_turbo_1.0_fp16.safetensors /comfyui/models/checkpoints/
-COPY stable-diffusion-webui/models/Stable-diffusion/airfucksBruteMix_v10.safetensors /comfyui/models/checkpoints/
-COPY stable-diffusion-webui/models/Stable-diffusion/bb95FurryMix_v60.safetensors /comfyui/models/checkpoints/
-COPY stable-diffusion-webui/models/Stable-diffusion/homofidelis_v20BETA.safetensors /comfyui/models/checkpoints/
+# Copy Sams models
+COPY ComfyUI_windows_portable/ComfyUI/models/sams /comfyui/models/sams
+COPY ComfyUI_windows_portable/ComfyUI/models/grounding-dino /comfyui/models/grounding-dino
+COPY ComfyUI_windows_portable/ComfyUI/models/bert-base-uncased /comfyui/models/bert-base-uncased
+
+# Copy Controlnet Models
+COPY ComfyUI_windows_portable/ComfyUI/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/dpt_hybrid-midas-501f0c75.pt /comfyui/custom_nodes/comfyui_controlnet_aux/ckpts/lllyasviel/Annotators/
+# Copy Base Models
+
+# COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors /comfyui/models/checkpoints/
+# COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_turbo_1.0_fp16.safetensors /comfyui/models/checkpoints/
+# COPY stable-diffusion-webui/models/Stable-diffusion/airfucksBruteMix_v10.safetensors /comfyui/models/checkpoints/
+# COPY stable-diffusion-webui/models/Stable-diffusion/bb95FurryMix_v60.safetensors /comfyui/models/checkpoints/
+# COPY stable-diffusion-webui/models/Stable-diffusion/homofidelis_v20BETA.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/crystalClearXL_ccxl.safetensors /comfyui/models/checkpoints/
 
 # Download Controlnets 
 
 COPY stable-diffusion-webui/extensions/sd-webui-controlnet/models/diffusers_xl_depth_full.safetensors /comfyui/models/controlnet/
-COPY stable-diffusion-webui/extensions/sd-webui-controlnet/models/control_v11f1p_sd15_depth.pth /comfyui/models/controlnet/
-COPY stable-diffusion-webui/extensions/sd-webui-controlnet/models/control_v11p_sd15_inpaint.pth /comfyui/models/controlnet/
+# COPY stable-diffusion-webui/extensions/sd-webui-controlnet/models/control_v11f1p_sd15_depth.pth /comfyui/models/controlnet/
+# COPY stable-diffusion-webui/extensions/sd-webui-controlnet/models/control_v11p_sd15_inpaint.pth /comfyui/models/controlnet/
 
 # Download Loras to include in image.
 COPY stable-diffusion-webui/models/Lora/extreme-low-angle-perspective.safetensors /comfyui/models/loras/
 COPY stable-diffusion-webui/models/Lora/tinyman.safetensors /comfyui/models/loras/
-COPY stable-diffusion-webui/models/Lora/tinyman512.safetensors /comfyui/models/loras/
+# COPY stable-diffusion-webui/models/Lora/tinyman512.safetensors /comfyui/models/loras/
 # COPY stable-diffusion-webui/models/Lora/lcm_lora_sdxl.safetensors /comfyui/models/loras/
-COPY stable-diffusion-webui/models/Lora/BetterCocks2.safetensors /comfyui/models/loras/
+# COPY stable-diffusion-webui/models/Lora/BetterCocks2.safetensors /comfyui/models/loras/
 COPY stable-diffusion-webui/models/Lora/xpenisv9-000040.safetensors /comfyui/models/loras/
-
 
 # Download VAEs
 COPY stable-diffusion-webui/models/VAE/vae-ft-mse-840000-ema-pruned.safetensors /comfyui/models/vae/
 COPY stable-diffusion-webui/models/VAE/sdxl_vae.safetensors /comfyui/models/vae/
 
-# Create necessary directories
-RUN mkdir -p /comfyui/models/ultralytics
-RUN mkdir -p /comfyui/models/ultralytics/bbox
-RUN mkdir -p /comfyui/models/ultralytics/segm
-RUN mkdir -p /comfyui/models/sams
-RUN mkdir -p /comfyui/models/midas/checkpoints
+# # Create necessary directories
+# RUN mkdir -p /comfyui/models/ultralytics
+# RUN mkdir -p /comfyui/models/ultralytics/bbox
+# RUN mkdir -p /comfyui/models/ultralytics/segm
+# RUN mkdir -p /comfyui/models/sams
+# RUN mkdir -p /comfyui/models/midas/checkpoints
 
-# Get SAM models
-COPY ComfyUI_windows_portable/ComfyUI/models/sams/sam_vit_b_01ec64.pth /comfyui/models/sams/
+# # Get SAM models
+# COPY ComfyUI_windows_portable/ComfyUI/models/sams/sam_vit_b_01ec64.pth /comfyui/models/sams/
 
-# Get Ultralytics models
-COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/bbox/face_yolov8m.pt /comfyui/models/ultralytics/bbox/
-COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/bbox/hand_yolov8s.pt /comfyui/models/ultralytics/bbox/
+# # Get Ultralytics models
+# COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/bbox/face_yolov8m.pt /comfyui/models/ultralytics/bbox/
+# COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/bbox/hand_yolov8s.pt /comfyui/models/ultralytics/bbox/
 
-COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/foot-yolov8l.pt /comfyui/models/ultralytics/segm/
-COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/genitalia.pt /comfyui/models/ultralytics/segm/
-COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/penisV2.pt /comfyui/models/ultralytics/segm/
-COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/person_yolov8m-seg.pt /comfyui/models/ultralytics/segm/
+# COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/foot-yolov8l.pt /comfyui/models/ultralytics/segm/
+# COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/genitalia.pt /comfyui/models/ultralytics/segm/
+# COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/penisV2.pt /comfyui/models/ultralytics/segm/
+# COPY ComfyUI_windows_portable/ComfyUI/models/ultralytics/segm/person_yolov8m-seg.pt /comfyui/models/ultralytics/segm/
 
 # Go back to the root
 WORKDIR /
