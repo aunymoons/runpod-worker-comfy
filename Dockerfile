@@ -138,7 +138,7 @@ COPY ComfyUI_windows_portable/ComfyUI/custom_nodes/comfyui_controlnet_aux/ckpts/
 # COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors /comfyui/models/checkpoints/
 # COPY stable-diffusion-webui/models/Stable-diffusion/sd_xl_turbo_1.0_fp16.safetensors /comfyui/models/checkpoints/
 # COPY stable-diffusion-webui/models/Stable-diffusion/airfucksBruteMix_v10.safetensors /comfyui/models/checkpoints/
-# COPY stable-diffusion-webui/models/Stable-diffusion/bb95FurryMix_v60.safetensors /comfyui/models/checkpoints/
+COPY stable-diffusion-webui/models/Stable-diffusion/bb95FurryMix_v60.safetensors /comfyui/models/checkpoints/
 # COPY stable-diffusion-webui/models/Stable-diffusion/homofidelis_v20BETA.safetensors /comfyui/models/checkpoints/
 COPY stable-diffusion-webui/models/Stable-diffusion/crystalClearXL_ccxl.safetensors /comfyui/models/checkpoints/
 
@@ -155,6 +155,7 @@ COPY stable-diffusion-webui/models/Lora/tinyman.safetensors /comfyui/models/lora
 # COPY stable-diffusion-webui/models/Lora/lcm_lora_sdxl.safetensors /comfyui/models/loras/
 # COPY stable-diffusion-webui/models/Lora/BetterCocks2.safetensors /comfyui/models/loras/
 COPY stable-diffusion-webui/models/Lora/xpenisv9-000040.safetensors /comfyui/models/loras/
+COPY stable-diffusion-webui/models/Lora/jvdaniangXL-beta-fix.safetensors /comfyui/models/loras/
 
 # Download VAEs
 COPY stable-diffusion-webui/models/VAE/vae-ft-mse-840000-ema-pruned.safetensors /comfyui/models/vae/
